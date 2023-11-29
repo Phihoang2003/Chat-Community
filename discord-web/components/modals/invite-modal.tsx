@@ -20,8 +20,6 @@ const InviteModal = () => {
     
     const {server}=data
     
-    console.log(server);
-    
     const[isLoading,setIsLoading]=useState(false);
     const [copied,setCopied]=useState(false);
     const inviteUrl=`${origin}/invite/${server?.inviteCode}`
