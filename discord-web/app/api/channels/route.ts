@@ -32,6 +32,7 @@ export async function POST(req: Request) {
             },
           },
         },
+        
       },
       data: {
         channels: {
@@ -40,8 +41,11 @@ export async function POST(req: Request) {
             name,
             type,
           },
+          
         },
       },
+      
+
     });
     return NextResponse.json(server);
   } catch (error) {
