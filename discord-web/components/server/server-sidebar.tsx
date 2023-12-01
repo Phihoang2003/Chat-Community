@@ -1,3 +1,4 @@
+
 import currentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType, MemberRole } from "@prisma/client";
@@ -9,8 +10,8 @@ import { ScrollArea } from "../ui/scroll-area";
 import ServerSeach from "./server-search";
 import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
-import ServerChannel from "./server-channel";
 import ServerMember from "./server-member";
+import ServerChannel from "./server-channel";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -130,13 +131,12 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
               label="Text Channels"
             />
             <div className="space-y-[2px]">
-              {textChannels?.map((channel)=>(
+              {textChannels.map((channel) => (
                 <ServerChannel
                   key={channel.id}
-                  server={server}
                   channel={channel}
                   role={role}
-
+                  server={server}
                 />
               ))}
             </div>
