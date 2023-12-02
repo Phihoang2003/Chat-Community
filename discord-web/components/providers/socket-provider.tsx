@@ -31,7 +31,7 @@ export const SocketProvider = ({
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    //đai dien cho client
+    //đai dien cho client(client ket noi len websocket co path la api/sockett/io va websocket se su dung phat message cho cac cliet ket noi khac)
     const socketInstance = new (ClientIO as any)(process.env.NEXT_PUBLIC_SITE_URL!, {
       path: "/api/socket/io",
       addTrailingSlash: false,
