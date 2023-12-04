@@ -1,3 +1,4 @@
+"use client"
 import { FileIcon, X } from "lucide-react";
 import Image from "next/image";
 

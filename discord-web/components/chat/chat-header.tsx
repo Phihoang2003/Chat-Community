@@ -1,7 +1,7 @@
+
 import React from 'react'
 import MobileToggle from '../mobile-toggle'
 import { Hash } from 'lucide-react'
-import { channel } from 'diagnostics_channel'
 import SocketIndicator from '../socket-indicator'
 
 interface ChatHeaderProps{

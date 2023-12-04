@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
-import { useSocket } from './providers/socket-provider'
+import { useSocket as useSocket } from './providers/socket-provider'
 import { Badge } from './ui/badge'
 
 const SocketIndicator = () => {
-    const {isConnected}=useSocket()
+  const {isConnected}=useSocket()
   if(!isConnected){
     
     
@@ -13,7 +13,6 @@ const SocketIndicator = () => {
     className="bg-yellow-600 text-white border-none"
   >
     Fallback: Polling every 1s
-    
     
   </Badge>)
   }
