@@ -38,6 +38,7 @@ export default function useChatQuery({
     status,
   } = useInfiniteQuery({
     queryKey: [queryKey],
+    // Lay ra 10 tin nhan dau tien sau do fetchMessages se cap nhat lai cursor va fetch tiep 10 tin nhan tiep theo
     queryFn: fetchMessages,
     getNextPageParam: (lastPage) => lastPage?.nextCursor,
     refetchInterval: isConnected ? false : 1000,
