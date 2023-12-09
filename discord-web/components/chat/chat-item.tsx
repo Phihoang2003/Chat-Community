@@ -5,12 +5,16 @@ import ActionTooltip from '../action-tooltip'
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import qs from "query-string"
 import * as z from "zod"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import axios from 'axios'
+import { useModal } from '@/hooks/use-modal-store'
+
 interface ChatItemProps{
   id:string,
   content:string,
@@ -45,6 +49,7 @@ const ChatItem = (
     socketUrl,
     socketQuery}:ChatItemProps
 ) => {
+  const {onOpen}=useModal();
   useEffect(()=>{
     const handleKeydown=(event:any)=>{
       if(event.key==="Escape"||event.keyCode===27){
@@ -62,8 +67,20 @@ const ChatItem = (
 
   })
   const isLoading = form.formState.isSubmitting;
-  const onSubmit = ()=>{
-
+  const onSubmit =async (values:z.infer<typeof formSchema>)=>{
+    
+      try {
+        const url=qs.stringifyUrl({
+          url:`${socketUrl}/${id}`,
+          query:socketQuery
+        })
+        await axios.patch(url,values);
+        form.reset();
+        setIsEditing(false);
+      } catch (error) {
+        console.log(error);
+        
+      }
   }
   useEffect(()=>{
     form.reset({
@@ -179,7 +196,10 @@ const ChatItem = (
           )}
           <ActionTooltip label='Delete'>
             <Trash
-              onClick={()=>{}}
+              onClick={()=>onOpen("deleteMessage",{
+                apiUrl:`${socketUrl}/${id}`,
+                query:socketQuery
+              })}
               className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
             />
           </ActionTooltip>
