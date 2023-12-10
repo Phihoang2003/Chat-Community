@@ -6,6 +6,7 @@ import useChatQuery from "@/hooks/use-chat-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import {format}from "date-fns"
 import ChatItem from "./chat-item";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 type MessageWithMemberWithProfile = Message & {
@@ -36,6 +37,8 @@ const ChatMessages = ({
   type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`;
+  const addKey=`chat:${chatId}:messages`
+  const updateKey=`chat:${chatId}:messages:update`
   const {
     data,
     fetchNextPage,
@@ -48,33 +51,35 @@ const ChatMessages = ({
     paramKey,
     paramValue,
   });
-  // if (status === "pending") {
-  //   return (
-  //     <div className="flex flex-col flex-1 justify-center items-center">
-  //       <Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4" />
-  //       <p className="text-xs text-zinc-500 dark:text-zinc-400">
-  //         Loading messages...
-  //       </p>
-  //     </div>
-  //   )
-  // }
+  //cap nhat tin nhan trong thoi gian thuc
+  useChatSocket({addKey,updateKey,queryKey})
+  if (status === "pending") {
+    return (
+      <div className="flex flex-col flex-1 justify-center items-center">
+        <Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4" />
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          Loading messages...
+        </p>
+      </div>
+    )
+  }
 
-  // if (status === "error") {
-  //   return (
-  //     <div className="flex flex-col flex-1 justify-center items-center">
-  //       <ServerCrash className="h-7 w-7 text-zinc-500 my-4" />
-  //       <p className="text-xs text-zinc-500 dark:text-zinc-400">
-  //         Something went wrong!
-  //       </p>
-  //     </div>
-  //   )
-  // }
+  if (status === "error") {
+    return (
+      <div className="flex flex-col flex-1 justify-center items-center">
+        <ServerCrash className="h-7 w-7 text-zinc-500 my-4" />
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          Something went wrong!
+        </p>
+      </div>
+    )
+  }
   return (
     // flex-1 se tu dong tang kich thuoc va co dan lai cho phu hop theo chieu cao cua phan tu cha
     <div className="flex-1 flex flex-col overflow-y-auto py-4 ">
       <div className="flex-1" />
       <ChatWelcome type={type} name={name} />
-      <div className="flex- flex-col-reverse mt-auto ">
+      <div className="flex flex-col-reverse mt-auto ">
           {data?.pages?.map((group,i)=>(
             <Fragment key={i}>
                 {group.items.map((message:MessageWithMemberWithProfile)=>(
