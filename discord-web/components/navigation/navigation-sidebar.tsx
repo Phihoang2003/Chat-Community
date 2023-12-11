@@ -39,7 +39,7 @@ const NavigationSidebar = async() => {
                 </div>
             ))}
         </ScrollArea>
-        <div className='mb-3 mt-auto flex items-center flex-col gap-y-4'>
+        <div className='pb-3 mt-auto flex items-center flex-col gap-y-4'>
             <ModeToggle/>
             <UserButton
                 afterSignOutUrl='/'
