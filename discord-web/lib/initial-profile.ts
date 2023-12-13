@@ -1,16 +1,18 @@
 import { currentUser,redirectToSignIn } from "@clerk/nextjs";
 
 import { db } from "./db";
+import { redirect } from "next/navigation";
+
 
 const InitialProfile =async () => {
     const user=await currentUser();
     if(!user){
-        return redirectToSignIn()
+        redirectToSignIn();
     }
     const profile=await db.profile.findUnique
     ({
         where:{
-            userId:user.id
+            userId:user?.id
         }
     })
     if(profile){
@@ -18,10 +20,10 @@ const InitialProfile =async () => {
     }
     const newProfile=await db.profile.create({
         data:{
-            userId:user.id,
-            name:`${user.firstName} ${user.lastName}`,
-            imageUrl:user.imageUrl,
-            email:user.emailAddresses[0].emailAddress
+            userId:user?.id as string,
+            name:`${user?.firstName} ${user?.lastName}`,
+            imageUrl:user?.imageUrl as string,
+            email:user?.emailAddresses[0].emailAddress as string
         }
     })
   return newProfile;

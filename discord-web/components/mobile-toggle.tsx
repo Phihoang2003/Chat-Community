@@ -25,6 +25,10 @@ const MobileToggle = ({serverId}:MobileToggle) => {
             <ServerSidebar serverId={serverId}/>
         </SheetContent>
     </Sheet>
+
+   
+
+
   )
 }
 
