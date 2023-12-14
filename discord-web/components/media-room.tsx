@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LiveKitRoom, RoomAudioRenderer, VideoConference } from "@livekit/components-react";
+import { LiveKitRoom, VideoConference } from "@livekit/components-react";
 import "@livekit/components-styles";
 import { Channel } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+import { Room } from "livekit-client";
+import { usePathname } from "next/navigation";
+
 
 interface MediaRoomProps {
   chatId: string;
@@ -20,7 +23,8 @@ export const MediaRoom = ({
 }: MediaRoomProps) => {
   const { user } = useUser();
   const [token, setToken] = useState("");
-
+  const room=new Room();
+  const pathName=usePathname()
   useEffect(() => {
     if (!user?.firstName || !user?.lastName) return;
 
@@ -49,8 +53,13 @@ export const MediaRoom = ({
       </div>
     )
   }
-
+  
+  console.log(pathName);
+  
+  
+  
   return (
+    <>
     <LiveKitRoom
       data-lk-theme="default"
       serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
@@ -61,5 +70,6 @@ export const MediaRoom = ({
     >
       <VideoConference />
     </LiveKitRoom>
+    </>
   )
 }
