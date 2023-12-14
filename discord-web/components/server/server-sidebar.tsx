@@ -1,5 +1,4 @@
 
-import currentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType, MemberRole } from "@prisma/client";
 import { redirect } from "next/navigation";
@@ -12,6 +11,7 @@ import { Separator } from "../ui/separator";
 import ServerSection from "./server-section";
 import ServerMember from "./server-member";
 import ServerChannel from "./server-channel";
+import { currentProfile } from "@/lib/current-profile";
 
 interface ServerSidebarProps {
   serverId: string;

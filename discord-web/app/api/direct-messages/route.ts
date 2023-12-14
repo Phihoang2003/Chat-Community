@@ -3,7 +3,7 @@ import { DirectMessage } from "@prisma/client";
 
 
 import { db } from "@/lib/db";
-import currentProfile from "@/lib/current-profile";
+import { currentProfile } from '@/lib/current-profile';;
 
 const MESSAGES_BATCH = 10;
 

@@ -2,7 +2,8 @@ import ChatHeader from "@/components/chat/chat-header";
 import ChatInPut from "@/components/chat/chat-input";
 import ChatMessages from "@/components/chat/chat-messages";
 import { MediaRoom } from "@/components/media-room";
-import currentProfile from "@/lib/current-profile";
+import { currentProfile } from "@/lib/current-profile";
+
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { ChannelType } from "@prisma/client";
@@ -16,7 +17,8 @@ interface ChannelIdPageProps {
 }
 
 const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
-  const profile = await currentProfile();
+  const profile = await currentProfile
+  ();
 
   if (!profile) {
     return redirectToSignIn();

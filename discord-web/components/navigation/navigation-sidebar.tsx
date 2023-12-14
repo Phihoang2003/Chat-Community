@@ -1,4 +1,4 @@
-import currentProfile from "@/lib/current-profile";
+
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -8,6 +8,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import NavigationItem from "./navigation-item";
 import { ModeToggle } from "../mode-toggle";
 import { UserButton } from "@clerk/nextjs";
+import { currentProfile } from "@/lib/current-profile";
 
 const NavigationSidebar = async () => {
   const profile = await currentProfile();
