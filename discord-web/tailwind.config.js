@@ -9,6 +9,7 @@ module.exports = {
 	],
   theme: {
     screens:{
+      'smIPlus':'414px',
       'smIP': '492px',
       'sm': '600px',
       // => @media (min-width: 640px) { ... }
