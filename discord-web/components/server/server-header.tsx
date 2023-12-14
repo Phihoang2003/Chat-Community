@@ -24,11 +24,11 @@ const ServerHeader = ({server,role}:ServerHeaderProps) => {
             <button className='w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-500 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition'>
 
                 {server.name}
-                <ChevronDown className='h-5 w-5 ml-auto'/>
+                <ChevronDown className='h-5 w-5 ml-auto sm:ml-[200px]'/>
             </button>
 
         </DropdownMenuTrigger>
-        <DropdownMenuContent className='text-xs font-medium w-56 text-black dark:text-neutral-400 space-y-[2px]'>
+        <DropdownMenuContent className='text-xs font-medium w-56 sm:w-72 text-black dark:text-neutral-400 space-y-[2px]'>
             {isModerator&&(
                 <DropdownMenuItem
 
