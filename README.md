@@ -1,6 +1,5 @@
 Link Deploy Project on Railway:https://chat-app-ph.vercel.app
 ![image](https://github.com/Phihoang2003/discord-clone/assets/107670709/12fb0011-8a36-4110-8d55-b7f29704e075)
-![image](https://github.com/Phihoang2003/discord-clone/assets/107670709/458e7eb1-86c9-42aa-a17d-8839e5c728c0)
 
 ![image](https://github.com/Phihoang2003/discord-clone/assets/107670709/aaf20531-594e-495e-8094-ce15266aad63)
 ![image](https://github.com/Phihoang2003/discord-clone/assets/107670709/37e22576-55fc-437f-ac85-5c99b4888f87)
